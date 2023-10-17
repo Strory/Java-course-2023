@@ -1,10 +1,13 @@
 package edu.hw1;
 
 public class Task6 {
-    public static void main(String[] args) {
-        System.out.println(K(6554));
+    private Task6() {
     }
 
+    //    public static void main(String[] args) {
+//        System.out.println(K(6554));
+//    }
+    @SuppressWarnings({"MagicNumber", "MethodName"})
     public static int K(int numb) {
         if (numb == 6174) {
             return 0;
@@ -17,6 +20,7 @@ public class Task6 {
         }
     }
 
+    @SuppressWarnings({"MagicNumber"})
     public static int sortAscending(int[] digits) {
         int i = 0;
         while (i < 3) {
@@ -40,6 +44,7 @@ public class Task6 {
         return digit;
     }
 
+    @SuppressWarnings({"MagicNumber"})
     public static int sortDescending(int[] digits) {
         int i = 0;
         while (i < 3) {
@@ -63,6 +68,7 @@ public class Task6 {
         return digit;
     }
 
+    @SuppressWarnings({"MagicNumber", "ParameterAssignment"})
     public static int[] makeDigitsArray(int numb) {
         int[] digits = new int[4];
         for (int i = 0; i < 4; ++i) {

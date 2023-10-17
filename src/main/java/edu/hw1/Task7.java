@@ -1,11 +1,14 @@
 package edu.hw1;
 
 public class Task7 {
-    public static void main(String[] args) {
-        System.out.println(rotateRight(6621, 2));
-        System.out.println(rotateLeft(17, 3));
+    private Task7() {
     }
+//    public static void main(String[] args) {
+//        System.out.println(rotateRight(6621, 2));
+//        System.out.println(rotateLeft(17, 3));
+//    }
 
+    @SuppressWarnings({"ParameterAssignment"})
     public static int rotateRight(int n, int shift) {
         int[] bits = bitSplitting(n);
         int[] rotateBits = new int[bits.length];
@@ -26,6 +29,7 @@ public class Task7 {
         return number;
     }
 
+    @SuppressWarnings({"ParameterAssignment"})
     public static int rotateLeft(int n, int shift) {
         int[] bits = bitSplitting(n);
         int[] rotateBits = new int[bits.length];
@@ -46,6 +50,7 @@ public class Task7 {
         return number;
     }
 
+    @SuppressWarnings({"ParameterAssignment"})
     public static int[] bitSplitting(int n) {
         int countBits = binaryNumberOrder(n);
         int[] bits = new int[countBits];

@@ -2,7 +2,6 @@ package edu.hw1;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import edu.hw1.Task1;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +13,7 @@ public class Task1Test {
         String inputString = "3213:22";
 
         //when
-        int realAnswer = Task1.len_video(inputString);
+        int realAnswer = Task1.lenVideo(inputString);
 
         //then
         assertThat(realAnswer).isEqualTo(3213 * 60 + 22);
@@ -27,7 +26,7 @@ public class Task1Test {
         String inputString = "213:324";
 
         //when
-        int realAnswer = Task1.len_video(inputString);
+        int realAnswer = Task1.lenVideo(inputString);
 
         //then
         assertThat(realAnswer).isEqualTo(-1);
@@ -40,7 +39,7 @@ public class Task1Test {
         String inputString = "0:59";
 
         //when
-        int realAnswer = Task1.len_video(inputString);
+        int realAnswer = Task1.lenVideo(inputString);
 
         //then
         assertThat(realAnswer).isEqualTo(59);
@@ -53,7 +52,7 @@ public class Task1Test {
         String inputString = "0:60";
 
         //when
-        int realAnswer = Task1.len_video(inputString);
+        int realAnswer = Task1.lenVideo(inputString);
 
         //then
         assertThat(realAnswer).isEqualTo(-1);
@@ -66,7 +65,7 @@ public class Task1Test {
         String inputString = "0:-21";
 
         //when
-        int realAnswer = Task1.len_video(inputString);
+        int realAnswer = Task1.lenVideo(inputString);
 
         //then
         assertThat(realAnswer).isEqualTo(-1);
@@ -79,7 +78,7 @@ public class Task1Test {
         String inputString = "-5:21";
 
         //when
-        int realAnswer = Task1.len_video(inputString);
+        int realAnswer = Task1.lenVideo(inputString);
 
         //then
         assertThat(realAnswer).isEqualTo(-1);

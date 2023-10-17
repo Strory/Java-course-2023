@@ -1,10 +1,13 @@
 package edu.hw1;
 
 public class Task5 {
-    public static void main(String[] args) {
-        System.out.println(isPalindromeDescendant(221));
+    private Task5() {
     }
 
+    //    public static void main(String[] args) {
+//        System.out.println(isPalindromeDescendant(221));
+//    }
+    @SuppressWarnings({"ParameterAssignment"})
     public static boolean isPalindromeDescendant(int numb) {
         while (countDigits(numb) > 1) {
             if (checkPalindrome((numb))) {
@@ -15,6 +18,7 @@ public class Task5 {
         return false;
     }
 
+    @SuppressWarnings({"MagicNumber", "ParameterAssignment"})
     public static boolean checkPalindrome(int numb) {
         int order = countDigits(numb);
         int tenPow = order - 1;
@@ -29,6 +33,7 @@ public class Task5 {
         return true;
     }
 
+    @SuppressWarnings({"MagicNumber", "ParameterAssignment"})
     public static int createChild(int numb) {
         int order = countDigits(numb);
         int tenPow = order - 1;
@@ -49,6 +54,7 @@ public class Task5 {
         return Integer.parseInt(child.toString());
     }
 
+    @SuppressWarnings({"MagicNumber", "ParameterAssignment"})
     public static int countDigits(int n) {
         int count = 1;
         while (n > 9) {

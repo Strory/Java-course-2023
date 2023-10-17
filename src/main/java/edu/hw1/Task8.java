@@ -1,20 +1,23 @@
 package edu.hw1;
 
 public class Task8 {
-    public static void main(String[] args) {
-        int[][] board = new int[][] {
-            {0, 0, 0, 1, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 1, 0, 0, 0, 1, 0, 0},
-            {0, 0, 0, 0, 1, 0, 1, 0},
-            {0, 1, 0, 0, 0, 1, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 1, 0, 0, 0, 0, 0, 1},
-            {0, 0, 0, 0, 1, 0, 0, 0}
-        };
-        System.out.println(knightBoardCapture(board));
+    private Task8() {
     }
 
+    //    public static void main(String[] args) {
+//        int[][] board = new int[][] {
+//            {0, 0, 0, 1, 0, 0, 0, 0},
+//            {0, 0, 0, 0, 0, 0, 0, 0},
+//            {0, 1, 0, 0, 0, 1, 0, 0},
+//            {0, 0, 0, 0, 1, 0, 1, 0},
+//            {0, 1, 0, 0, 0, 1, 0, 0},
+//            {0, 0, 0, 0, 0, 0, 0, 0},
+//            {0, 1, 0, 0, 0, 0, 0, 1},
+//            {0, 0, 0, 0, 1, 0, 0, 0}
+//        };
+//        System.out.println(knightBoardCapture(board));
+//    }
+    @SuppressWarnings({"MagicNumber", "CyclomaticComplexity", "ReturnCount", "NestedIfDepth"})
     public static boolean knightBoardCapture(int[][] board) {
         for (int i = 0; i < board.length; ++i) {
             for (int j = 0; j < board[i].length; ++j) {
