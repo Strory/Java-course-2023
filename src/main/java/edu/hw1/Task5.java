@@ -4,9 +4,6 @@ public class Task5 {
     private Task5() {
     }
 
-    //    public static void main(String[] args) {
-//        System.out.println(isPalindromeDescendant(221));
-//    }
     @SuppressWarnings({"ParameterAssignment"})
     public static boolean isPalindromeDescendant(int numb) {
         while (countDigits(numb) > 1) {

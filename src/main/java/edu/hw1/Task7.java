@@ -3,10 +3,6 @@ package edu.hw1;
 public class Task7 {
     private Task7() {
     }
-//    public static void main(String[] args) {
-//        System.out.println(rotateRight(6621, 2));
-//        System.out.println(rotateLeft(17, 3));
-//    }
 
     @SuppressWarnings({"ParameterAssignment"})
     public static int rotateRight(int n, int shift) {

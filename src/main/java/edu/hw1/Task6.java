@@ -4,9 +4,6 @@ public class Task6 {
     private Task6() {
     }
 
-    //    public static void main(String[] args) {
-//        System.out.println(K(6554));
-//    }
     @SuppressWarnings({"MagicNumber", "MethodName"})
     public static int K(int numb) {
         if (numb == 6174) {
