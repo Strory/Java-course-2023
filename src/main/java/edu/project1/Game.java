@@ -15,10 +15,11 @@ public class Game {
         this.user = new User(this.word.length(), this.settings.getMaxAttempts());
     }
 
+    @SuppressWarnings("RegexpSinglelineJava")
     public void mainCycle() {
         while (user.getAttempts() > 0) {
             System.out.println("Guess a letter:");
-            String answer = _userInput();
+            String answer = userInput();
             if (answer.equals(settings.getExitCommand())) {
                 return;
             }
@@ -33,10 +34,10 @@ public class Game {
                 System.out.print("The word: " + user.getUserAnswer() + "\n\n");
             } else {
                 user.takeAwayAttempt();
-                System.out.println("Missed, mistake " + (settings.getMaxAttempts() - user.getAttempts()) +
-                        " out of " + settings.getMaxAttempts() + ".");
+                System.out.println("Missed, mistake " + (settings.getMaxAttempts() - user.getAttempts())
+                    + " out of " + settings.getMaxAttempts() + ".");
             }
-            if (word.equals(user.getUserAnswer())){
+            if (word.equals(user.getUserAnswer())) {
                 break;
             }
         }
@@ -47,7 +48,7 @@ public class Game {
         }
     }
 
-    private String _userInput() {
+    private String userInput() {
         String inputLine;
         try {
             InputStreamReader isr = new InputStreamReader(System.in);

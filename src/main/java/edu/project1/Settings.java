@@ -8,6 +8,7 @@ public class Settings {
     public String[] getWords() {
         return words;
     }
+
     public int getMaxAttempts() {
         return maxAttempts;
     }

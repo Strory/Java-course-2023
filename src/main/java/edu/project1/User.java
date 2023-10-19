@@ -28,8 +28,12 @@ public class User {
         }
     }
 
-    public void takeAwayAttempt() {--attempts;}
+    public void takeAwayAttempt() {
+        --attempts;
+    }
 
-    public int getAttempts() {return attempts;}
+    public int getAttempts() {
+        return attempts;
+    }
 
 }
