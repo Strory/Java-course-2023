@@ -1,9 +1,5 @@
 package edu.project1;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 public class Game {
     private final String word;
     private final Settings settings = new Settings();
@@ -15,48 +11,33 @@ public class Game {
         this.user = new User(this.word.length(), this.settings.getMaxAttempts());
     }
 
-    @SuppressWarnings("RegexpSinglelineJava")
-    public void mainCycle() {
-        while (user.getAttempts() > 0) {
-            System.out.println("Guess a letter:");
-            String answer = userInput();
-            if (answer.equals(settings.getExitCommand())) {
-                return;
-            }
-            if (answer.length() != 1) {
-                System.out.println("Error input!");
-                continue;
-            }
-            if (word.contains(answer)) {
-                System.out.println("Hit!\n");
-                char letter = answer.charAt(0);
-                user.addLetter(letter, word);
-                System.out.print("The word: " + user.getUserAnswer() + "\n\n");
-            } else {
-                user.takeAwayAttempt();
-                System.out.println("Missed, mistake " + (settings.getMaxAttempts() - user.getAttempts())
-                    + " out of " + settings.getMaxAttempts() + ".");
-            }
-            if (word.equals(user.getUserAnswer())) {
-                break;
-            }
+    @SuppressWarnings("ReturnCount")
+    public String eventListener(String answer) {
+        if (answer.equals(settings.getExitCommand())) {
+            return "0";
         }
-        if (user.getAttempts() > 0) {
-            System.out.println("You won!");
+        if (answer.length() != 1) {
+            return "1";
+        }
+        if (word.contains(answer)) {
+            char letter = answer.charAt(0);
+            user.addLetter(letter, word);
+            if (word.equals(user.getUserAnswer())) {
+                return "4:" + user.getUserAnswer();
+            }
+            return "2:" + user.getUserAnswer();
         } else {
-            System.out.println("You lost!");
+            user.reduceAttempt();
+            if (user.getAttempts() < 1) {
+                return "5:" + ":" + (settings.getMaxAttempts() - user.getAttempts())
+                    + ":" + settings.getMaxAttempts();
+            }
+            return "3:" + (settings.getMaxAttempts() - user.getAttempts())
+                + ":" + settings.getMaxAttempts();
         }
     }
 
-    private String userInput() {
-        String inputLine;
-        try {
-            InputStreamReader isr = new InputStreamReader(System.in);
-            BufferedReader reader = new BufferedReader(isr);
-            inputLine = reader.readLine();
-        } catch (IOException e) {
-            inputLine = "";
-        }
-        return inputLine;
+    public int getAttempts() {
+        return user.getAttempts();
     }
 }

@@ -12,10 +12,6 @@ public class User {
         this.attempts = attempts;
     }
 
-    public void changeAnswer(int index, char symbol) {
-        this.userAnswer[index] = symbol;
-    }
-
     public String getUserAnswer() {
         return new String(userAnswer);
     }
@@ -28,12 +24,11 @@ public class User {
         }
     }
 
-    public void takeAwayAttempt() {
+    public void reduceAttempt() {
         --attempts;
     }
 
     public int getAttempts() {
         return attempts;
     }
-
 }
