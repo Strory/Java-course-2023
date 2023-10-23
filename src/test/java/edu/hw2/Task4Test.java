@@ -8,12 +8,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class Task4Test {
     @Test
     @DisplayName("Проверка возврата корректной строки")
-    void checkConstant() {
+    void checkCorrectAnswer() {
         //given
-        String correctString = "edu.hw2.task4.CallingInfo callingInfo";
+        String correctString = "public record edu.hw2.task4.CallingInfo(callingInfo)";
 
         //when
-        String realAnswer = new CallingInfo().callingInfo();
+        String realAnswer = CallingInfo.callingInfo();
+        System.out.println(realAnswer);
 
         //then
         assertThat(realAnswer).isEqualTo(correctString);

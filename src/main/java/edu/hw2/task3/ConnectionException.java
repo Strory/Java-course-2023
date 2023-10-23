@@ -5,8 +5,7 @@ public class ConnectionException extends RuntimeException {
         super(message, cause);
     }
 
-    @SuppressWarnings("AvoidNoArgumentSuperConstructorCall")
     public ConnectionException() {
-        super();
+
     }
 }

@@ -1,6 +1,9 @@
 package edu.hw2.task3;
 
+import java.util.logging.Logger;
+
 public class PopularCommandExecutor {
+    private final static Logger LOGGER = Logger.getLogger("commandLogger");
     private final ConnectionManager manager;
     private final int maxAttempts;
 
@@ -15,13 +18,11 @@ public class PopularCommandExecutor {
 
     void tryExecute(String command) {
         for (int i = 1; i <= maxAttempts; ++i) {
-            try {
-                Connection connection = manager.getConnection();
+            try (Connection connection = manager.getConnection()) {
                 connection.execute(command);
-                connection.close();
                 return;
             } catch (ConnectionException e) {
-                // обработка исключения
+                LOGGER.info("Обработка исключения.");
                 if (i >= maxAttempts) {
                     throw new ConnectionException("Превышено количество попыток", e);
                 }

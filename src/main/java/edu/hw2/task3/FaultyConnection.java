@@ -1,6 +1,9 @@
 package edu.hw2.task3;
 
+import java.util.logging.Logger;
+
 class FaultyConnection implements Connection {
+    private final static Logger LOGGER = Logger.getLogger("connectLogger");
     private static int faultyConnectCount = 0;
     private final int faultyConnectNumber;
 
@@ -19,6 +22,6 @@ class FaultyConnection implements Connection {
 
     @Override
     public void close() throws Exception {
-        // Закрытие соединения
+        LOGGER.info("Закрытие соединения.");
     }
 }

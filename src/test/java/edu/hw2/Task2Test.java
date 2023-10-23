@@ -1,5 +1,6 @@
 package edu.hw2;
 
+import edu.hw2.task1.Expr;
 import edu.hw2.task2.Rectangle;
 import edu.hw2.task2.Square;
 import org.junit.jupiter.api.DisplayName;
@@ -11,19 +12,29 @@ import org.junit.jupiter.params.provider.MethodSource;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Task2Test {
-    static Arguments[] rectangles() {
-        return new Arguments[] {
-            Arguments.of(new Rectangle()),
-            Arguments.of(new Square())
-        };
+    @Test
+    @DisplayName("Проверка площади прямоугольника")
+    void checkRectangleArea() {
+        //given
+        double expectedAnswer = 20 * 40;
+
+        //when
+        var realAnswer = new Rectangle(20, 40).area();
+
+        //then
+        assertThat(realAnswer).isEqualTo(expectedAnswer);
     }
 
-    @ParameterizedTest
-    @MethodSource("rectangles")
-    void rectangleArea(Rectangle rect) {
-        rect.setWidth(20);
-        double res = (rect.setHeight(10)) ? 20 * 10 : 20 * 20;
+    @Test
+    @DisplayName("Проверка площади прямоугольника")
+    void checkSquareArea() {
+        //given
+        double expectedAnswer = 30 * 30;
 
-        assertThat(rect.area()).isEqualTo(res);
+        //when
+        var realAnswer = new Square(30).area();
+
+        //then
+        assertThat(realAnswer).isEqualTo(expectedAnswer);
     }
 }
