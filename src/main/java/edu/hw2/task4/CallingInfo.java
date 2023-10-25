@@ -4,10 +4,10 @@ public record CallingInfo(String className, String methodName) {
     public static String callingInfo() {
         try {
             throw new MyException();
-        } catch (MyException e) {
+        } catch (MyException error) {
             CallingInfo callingInfo = new CallingInfo(
-                e.getStackTrace()[0].getClassName(),
-                e.getStackTrace()[0].getMethodName()
+                error.getStackTrace()[0].getClassName(),
+                error.getStackTrace()[0].getMethodName()
             );
             return callingInfo.toString();
         }

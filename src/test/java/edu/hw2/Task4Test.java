@@ -14,7 +14,6 @@ public class Task4Test {
 
         //when
         String realAnswer = CallingInfo.callingInfo();
-        System.out.println(realAnswer);
 
         //then
         assertThat(realAnswer).isEqualTo(correctString);

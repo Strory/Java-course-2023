@@ -17,11 +17,9 @@ public class Task3Test {
         //given
         ConnectionManager manager = new DefaultConnectionManager();
         int maxAttempts = 3;
-
-        //when
         PopularCommandExecutor executor = new PopularCommandExecutor(manager, maxAttempts);
 
-        //then
+        //expect
         try {
             executor.updatePackages();
             // Строка успешного завершения
@@ -36,11 +34,9 @@ public class Task3Test {
         //given
         ConnectionManager manager = new DefaultConnectionManager();
         int maxAttempts = 2;
-
-        //when
         PopularCommandExecutor executor = new PopularCommandExecutor(manager, maxAttempts);
 
-        //then
+        //expect
         try {
             executor.updatePackages();
             Assertions.fail();
@@ -55,11 +51,9 @@ public class Task3Test {
         //given
         ConnectionManager manager = new FaultyConnectionManager();
         int maxAttempts = 5;
-
-        //when
         PopularCommandExecutor executor = new PopularCommandExecutor(manager, maxAttempts);
 
-        //then
+        //expect
         try {
             executor.updatePackages();
             // Строка успешного завершения
@@ -74,11 +68,9 @@ public class Task3Test {
         //given
         ConnectionManager manager = new FaultyConnectionManager();
         int maxAttempts = 2;
-
-        //when
         PopularCommandExecutor executor = new PopularCommandExecutor(manager, maxAttempts);
 
-        //then
+        //expect
         try {
             executor.updatePackages();
             Assertions.fail();
