@@ -25,13 +25,13 @@ public class TestCommandController {
             String answer = controller.input();
             String[] gameAnswer = gameSession.eventListener(answer).split(":");
             gameAnswers.append(gameAnswer[0]);
-            if (gameAnswer[0].equals("0")) {
+            if ("0".equals(gameAnswer[0])) {
                 return gameAnswers.toString();
             }
-            if (gameAnswer[0].equals("4")) {
+            if ("4".equals(gameAnswer[0])) {
                 return gameAnswers.toString();
             }
-            if (gameAnswer[0].equals("5")) {
+            if ("5".equals(gameAnswer[0])) {
                 return gameAnswers.toString();
             }
         }

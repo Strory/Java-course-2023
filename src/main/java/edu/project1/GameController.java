@@ -28,27 +28,27 @@ public class GameController {
             LOGGER.info("Guess a letter:");
             String answer = controller.userInput();
             String[] gameAnswer = gameSession.eventListener(answer).split(":");
-            if (gameAnswer[0].equals("0")) {
+            if ("0".equals(gameAnswer[0])) {
                 return;
             }
-            if (gameAnswer[0].equals("1")) {
+            if ("1".equals(gameAnswer[0])) {
                 LOGGER.info("Error input!");
             }
-            if (gameAnswer[0].equals("2")) {
+            if ("2".equals(gameAnswer[0])) {
                 LOGGER.info("Hit!\n");
                 LOGGER.info("The word: " + gameAnswer[1] + "\n\n");
             }
-            if (gameAnswer[0].equals("3")) {
+            if ("3".equals(gameAnswer[0])) {
                 LOGGER.info("Missed, mistake " + gameAnswer[1] + " out of " + gameAnswer[2] + ".");
             }
-            if (gameAnswer[0].equals("4")) {
+            if ("4".equals(gameAnswer[0])) {
                 LOGGER.info("Hit!\n");
                 LOGGER.info("The word: " + gameAnswer[1] + "\n\n");
                 LOGGER.info("You won!");
                 return;
 
             }
-            if (gameAnswer[0].equals("5")) {
+            if ("5".equals(gameAnswer[0])) {
                 LOGGER.info("Missed, mistake " + gameAnswer[1] + " out of " + gameAnswer[2] + ".");
                 LOGGER.info("You lost!");
                 return;

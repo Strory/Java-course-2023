@@ -10,10 +10,10 @@ public class Project1Test {
     void checkAllHitAnswers() {
         //given
         String[] commands = {"v", "l", "o", "i", "n"};
+        String expectAnswer = "22224";
 
         //when
         String realAnswer = TestCommandController.commandSender(commands);
-        String expectAnswer = "22224";
 
         //then
         assertThat(realAnswer).isEqualTo(expectAnswer);
@@ -24,10 +24,10 @@ public class Project1Test {
     void checkIfHaveMistakes() {
         //given
         String[] commands = {"v", "y", "l", "x", "o", "i", "n"};
+        String expectAnswer = "2323224";
 
         //when
         String realAnswer = TestCommandController.commandSender(commands);
-        String expectAnswer = "2323224";
 
         //then
         assertThat(realAnswer).isEqualTo(expectAnswer);
@@ -38,10 +38,10 @@ public class Project1Test {
     void checkIncorrectInputAndQuit() {
         //given
         String[] commands = {"v", "hello", "u", "", "i", "quit"};
+        String expectAnswer = "213120";
 
         //when
         String realAnswer = TestCommandController.commandSender(commands);
-        String expectAnswer = "213120";
 
         //then
         assertThat(realAnswer).isEqualTo(expectAnswer);
@@ -52,10 +52,10 @@ public class Project1Test {
     void checkLost() {
         //given
         String[] commands = {"v", "hello", "u", "", "i", "x", "j", "t", "r"};
+        String expectAnswer = "213123335";
 
         //when
         String realAnswer = TestCommandController.commandSender(commands);
-        String expectAnswer = "213123335";
 
         //then
         assertThat(realAnswer).isEqualTo(expectAnswer);
