@@ -16,7 +16,7 @@ public class Paint {
     }
 
     public static void paintPathFinding() {
-        EllersMaze maze = new EllersMaze(PaintSettings.MAZE_WIDTH, PaintSettings.GET_MAZE_HEIGHT);
+        EllersMaze maze = new EllersMaze(PaintSettings.MAZE_WIDTH, PaintSettings.MAZE_HEIGHT);
         Cell[][] gridMaze = maze.generate();
 
         // Отрисовка просто лабиринта
