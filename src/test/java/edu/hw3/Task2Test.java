@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Task2Test {
@@ -19,7 +20,7 @@ public class Task2Test {
         ArrayList<String> expectAnswer = new ArrayList<>(Arrays.asList("()", "()", "()"));
 
         //when
-        ArrayList<String> realAnswer = Task2.splitBrackets(inputString);
+        List<String> realAnswer = Task2.splitBrackets(inputString);
 
         //then
         assertThat(realAnswer).isEqualTo(expectAnswer);
@@ -33,7 +34,7 @@ public class Task2Test {
         ArrayList<String> expectAnswer = new ArrayList<>(Arrays.asList("((()))"));
 
         //when
-        ArrayList<String> realAnswer = Task2.splitBrackets(inputString);
+        List<String> realAnswer = Task2.splitBrackets(inputString);
 
         //then
         assertThat(realAnswer).isEqualTo(expectAnswer);
@@ -47,7 +48,7 @@ public class Task2Test {
         ArrayList<String> expectAnswer = new ArrayList<>(Arrays.asList("((()))", "(())", "()", "()", "(()())"));
 
         //when
-        ArrayList<String> realAnswer = Task2.splitBrackets(inputString);
+        List<String> realAnswer = Task2.splitBrackets(inputString);
 
         //then
         assertThat(realAnswer).isEqualTo(expectAnswer);
@@ -61,7 +62,7 @@ public class Task2Test {
         ArrayList<String> expectAnswer = new ArrayList<>(Arrays.asList("((())())", "(()(()()))"));
 
         //when
-        ArrayList<String> realAnswer = Task2.splitBrackets(inputString);
+        List<String> realAnswer = Task2.splitBrackets(inputString);
 
         //then
         assertThat(realAnswer).isEqualTo(expectAnswer);

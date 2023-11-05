@@ -2,6 +2,7 @@ package edu.hw3;
 
 import edu.hw3.task4.Task4;
 import edu.hw3.task5.Contact;
+import edu.hw3.task5.SortMode;
 import edu.hw3.task5.Task5;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ public class Task5Test {
             new Contact("John", "Locke")};
 
         //when
-        Contact[] realAnswer = parseContact.parseContacts(arrNames, "ASC");
+        Contact[] realAnswer = parseContact.parseContacts(arrNames, SortMode.ASC);
 
         //then
         assertThat(realAnswer).isEqualTo(expectAnswer);
@@ -43,7 +44,7 @@ public class Task5Test {
             new Contact("John", "Locke")};
 
         //when
-        Contact[] realAnswer = parseContact.parseContacts(arrNames, "ASC");
+        Contact[] realAnswer = parseContact.parseContacts(arrNames, SortMode.ASC);
 
         //then
         assertThat(realAnswer).isEqualTo(expectAnswer);
@@ -66,7 +67,7 @@ public class Task5Test {
         };
 
         //when
-        Contact[] realAnswer = parseContact.parseContacts(arrNames, "DESC");
+        Contact[] realAnswer = parseContact.parseContacts(arrNames, SortMode.DESC);
 
         //then
         assertThat(realAnswer).isEqualTo(expectAnswer);

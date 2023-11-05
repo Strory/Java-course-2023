@@ -1,10 +1,11 @@
 package edu.hw3.task6;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.PriorityQueue;
 
 public class SomeMarcket implements StockMarcket {
-    private ArrayList<Stock> stockList = new ArrayList<>(); // подписать, что для данной задачи не нужен
+    private List<Stock> stockList = new ArrayList<>();
     private PriorityQueue<Stock> stockQueue = new PriorityQueue<>();
 
     @Override

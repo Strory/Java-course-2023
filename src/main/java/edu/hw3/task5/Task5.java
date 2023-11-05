@@ -1,13 +1,10 @@
 package edu.hw3.task5;
 
 public class Task5 {
-    public Contact[] parseContacts(String[] names, String sortMode) {
-        if (sortMode.equals("ASC")) {
-            quickSortForAsc(names, 0, names.length - 1);
-        } else if (sortMode.equals("DESC")) {
-            quickSortForDesc(names, 0, names.length - 1);
-        } else {
-            return null;
+    public Contact[] parseContacts(String[] names, SortMode sortMode) {
+        switch (sortMode) {
+            case ASC -> quickSortForAsc(names, 0, names.length - 1);
+            case DESC -> quickSortForDesc(names, 0, names.length - 1);
         }
 
         Contact[] contacts = new Contact[names.length];
@@ -99,24 +96,24 @@ public class Task5 {
 
     @SuppressWarnings("ReturnCount")
     private Compare compareForString(String element1, String element2) {
-        int minLength = Math.min(element1.length(), element2.length());
+        int element1Length = element1.length();
+        int element2Length = element2.length();
+        int minLength = Math.min(element1Length, element2Length);
         for (int i = 0; i < minLength; ++i) {
-            if (element1.charAt(i) < element2.charAt(i)) {
+            char element1Letter = element1.charAt(i);
+            char element2Letter = element2.charAt(i);
+            if (element1Letter < element2Letter) {
                 return Compare.LESS;
-            } else if (element1.charAt(i) > element2.charAt(i)) {
+            } else if (element1Letter > element2Letter) {
                 return Compare.GREATER;
             }
         }
-        if (element1.length() < element2.length()) {
+        if (element1Length < element2Length) {
             return Compare.LESS;
-        } else if (element1.length() > element2.length()) {
+        } else if (element1Length > element2Length) {
             return Compare.GREATER;
         } else {
             return Compare.EQUALS;
         }
-    }
-
-    enum Compare {
-        LESS, GREATER, EQUALS;
     }
 }

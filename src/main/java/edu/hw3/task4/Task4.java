@@ -10,37 +10,43 @@ public class Task4 {
         createMapRomanNumbers();
     }
 
-    @SuppressWarnings({"MagicNumber", "ParameterAssignment"})
+    @SuppressWarnings({"ParameterAssignment"})
     public String numbToRoman(int numb) {
+        final int THREE_THOUSAND_NINE_HUNDRED_NINETY_NINE = 3999;
+        final int TEN = 10;
         StringBuilder romanNumber = new StringBuilder();
-        if (numb > 3999 || numb < 0) {
+        if (numb > THREE_THOUSAND_NINE_HUNDRED_NINETY_NINE || numb < 0) {
             return null;
         }
 
         int pow = maxPower;
         while (numb > 0) {
-            romanNumber.append(uni(numb / (myPow(10, pow)), pow));
-            numb %= myPow(10, pow);
+            romanNumber.append(getRomanDigit(numb / (myPow(TEN, pow)), pow));
+            numb %= myPow(TEN, pow);
             --pow;
         }
         return romanNumber.toString();
     }
 
-    @SuppressWarnings({"ParameterAssignment", "MagicNumber"})
-    public String uni(int digit, int power) {
+    @SuppressWarnings({"ParameterAssignment"})
+    public String getRomanDigit(int digit, int power) {
+        final int FOUR = 4;
+        final int FIVE = 5;
+        final int NINE = 9;
+        final int TEN = 10;
         StringBuilder romanDigit = new StringBuilder();
-        if (digit == 9) {
-            romanDigit.append(numbers.get(9 * myPow(10, power)));
-            digit -= 9;
-        } else if (digit > 4) {
-            romanDigit.append(numbers.get(5 * myPow(10, power)));
-            digit -= 5;
-        } else if (digit == 4) {
-            romanDigit.append(numbers.get(4 * myPow(10, power)));
-            digit -= 4;
+        if (digit == NINE) {
+            romanDigit.append(numbers.get(NINE * myPow(TEN, power)));
+            digit -= NINE;
+        } else if (digit > FOUR) {
+            romanDigit.append(numbers.get(FIVE * myPow(TEN, power)));
+            digit -= FIVE;
+        } else if (digit == FOUR) {
+            romanDigit.append(numbers.get(FOUR * myPow(TEN, power)));
+            digit -= FOUR;
         }
         while (digit > 0) {
-            romanDigit.append(numbers.get(myPow(10, power)));
+            romanDigit.append(numbers.get(myPow(TEN, power)));
             --digit;
         }
         return romanDigit.toString();
