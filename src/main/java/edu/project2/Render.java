@@ -33,8 +33,8 @@ public class Render {
     private String generateCellDownLine(Cell cell, int cellDownColCoordinate, int cellDownRowCoordinate) {
         return String.valueOf(cell.getWallDown() ? wallSymbol : emptySymbol).repeat(cellWidth - 1)
             + ((cell.getWallRight() || cell.getWallDown()
-                || mazeGrid[cellDownColCoordinate][cellDownRowCoordinate].getWallRight())
-                ? wallSymbol : emptySymbol);
+            || mazeGrid[cellDownColCoordinate][cellDownRowCoordinate].getWallRight())
+            ? wallSymbol : emptySymbol);
     }
 
     private String generateCellDownLineForLastLine() {

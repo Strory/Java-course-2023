@@ -3,7 +3,8 @@ package edu.project2;
 import java.util.Random;
 
 public class GenerateNumbers {
-    private GenerateNumbers() {}
+    private GenerateNumbers() {
+    }
 
     public static Random randomNumber = new Random();
 
