@@ -4,7 +4,7 @@ public class PaintSettings {
     private PaintSettings() {}
 
     public static final int MAZE_WIDTH = 40;
-    public static final int GET_MAZE_HEIGHT = 10;
+    public static final int MAZE_HEIGHT = 10;
     public static final int COORDINATE_START_X = 0;
     public static final int COORDINATE_START_Y = 0;
     public static final int COORDINATE_END_X = 39;
