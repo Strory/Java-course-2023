@@ -1,6 +1,7 @@
 package edu.hw3.task5;
 
 public class Task5 {
+    @SuppressWarnings("MissingSwitchDefault")
     public Contact[] parseContacts(String[] names, SortMode sortMode) {
         switch (sortMode) {
             case ASC -> quickSortForAsc(names, 0, names.length - 1);
