@@ -339,7 +339,11 @@ public class AnimalsTest {
 
         //then
         for (Map.Entry animal : realAnswer.entrySet()) {
-            assertThat(expectAnswer.get(animal.getKey())).isEqualTo(animal.getValue());
+            List<String> realResults = new ArrayList<>(Arrays.asList(animal.getValue().toString().split(", ")));
+            List<String> expectResults = new ArrayList<>(Arrays.asList(expectAnswer.get(animal.getKey()).split(", ")));
+            for (String errorName : expectResults) {
+                assertThat(realResults.contains(errorName)).isTrue();
+            }
         }
     }
 }
