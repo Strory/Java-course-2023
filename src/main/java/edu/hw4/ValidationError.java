@@ -7,7 +7,7 @@ public class ValidationError {
     private static final int AGE_LIMIT = 60;
     private static final int HEIGHT_LIMIT = 100;
     private static final int WEIGHT_LIMIT = 200;
-    private String errorText;
+    private final String errorText;
 
     private ValidationError(String text) {
         errorText = text;
