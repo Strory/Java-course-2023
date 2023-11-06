@@ -339,7 +339,7 @@ public class AnimalsTest {
 
         //then
         for (Map.Entry animal : realAnswer.entrySet()) {
-            assertThat(animal.getValue()).isEqualTo(expectAnswer.get(animal.getKey()));
+            assertThat(expectAnswer.get(animal.getKey())).isEqualTo(animal.getValue());
         }
     }
 }
