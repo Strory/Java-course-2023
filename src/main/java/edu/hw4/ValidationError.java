@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ValidationError {
-    private static final int AGELIMIT = 60;
-    private static final int HEIGHTLIMIT = 100;
-    private static final int WEIGHTLIMIT = 200;
+    private static final int AGE_LIMIT = 60;
+    private static final int HEIGHT_LIMIT = 100;
+    private static final int WEIGHT_LIMIT = 200;
     private String errorText;
 
     private ValidationError(String text) {
@@ -32,14 +32,14 @@ public class ValidationError {
     }
 
     public static boolean checkAge(int age) {
-        return age >= 0 && age <= AGELIMIT;
+        return age >= 0 && age <= AGE_LIMIT;
     }
 
     public static boolean checkHeight(int height) {
-        return height > 0 && height <= HEIGHTLIMIT;
+        return height > 0 && height <= HEIGHT_LIMIT;
     }
 
     public static boolean checkWeight(int weight) {
-        return weight > 0 && weight <= WEIGHTLIMIT;
+        return weight > 0 && weight <= WEIGHT_LIMIT;
     }
 }

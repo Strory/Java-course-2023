@@ -9,13 +9,7 @@ public record Animal(
     int weight,
     boolean bites
 ) {
-    enum Type {
-        CAT, DOG, BIRD, FISH, SPIDER
-    }
 
-    enum Sex {
-        M, F
-    }
 
     @SuppressWarnings("MagicNumber")
     public int paws() {

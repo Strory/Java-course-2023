@@ -29,8 +29,8 @@ public class AnimalFunctions {
             .toList();
     }
 
-    public static HashMap<Animal.Type, Long> task3(List<Animal> animals) {
-        return (HashMap<Animal.Type, Long>) animals.stream()
+    public static HashMap<Type, Long> task3(List<Animal> animals) {
+        return (HashMap<Type, Long>) animals.stream()
             .collect(Collectors.groupingBy(
                 Animal::type,
                 Collectors.counting()
@@ -42,20 +42,20 @@ public class AnimalFunctions {
             .max(Comparator.comparingInt(animal -> animal.name().length())).get();
     }
 
-    public static Animal.Sex task5(List<Animal> animals) {
+    public static Sex task5(List<Animal> animals) {
         return animals.stream()
             .collect(Collectors.collectingAndThen(
-                Collectors.partitioningBy(animal -> animal.sex().equals(Animal.Sex.F)),
-                map -> {
-                    int female = map.get(true).size();
-                    int male = map.get(false).size();
-                    return (male > female) ? Animal.Sex.M : Animal.Sex.F;
-                }
+                Collectors.partitioningBy(animal -> Sex.F.equals(animal.sex())),
+                map -> whoMore(map.get(false).size(), map.get(true).size())
             ));
     }
 
-    public static HashMap<Animal.Type, Animal> task6(List<Animal> animals) {
-        return (HashMap<Animal.Type, Animal>) animals.stream()
+    private static Sex whoMore(int maleCount, int femaleCount) {
+        return (maleCount > femaleCount) ? Sex.M : Sex.F;
+    }
+
+    public static HashMap<Type, Animal> task6(List<Animal> animals) {
+        return (HashMap<Type, Animal>) animals.stream()
             .collect(Collectors
                 .toMap(Animal::type, Function.identity(), BinaryOperator
                     .maxBy(Comparator.comparingInt(Animal::weight))));
@@ -105,7 +105,7 @@ public class AnimalFunctions {
 
     public static boolean task14(List<Animal> animals, int k) {
         return animals.stream()
-            .anyMatch(animal -> animal.type().equals(Animal.Type.DOG) && animal.height() > k);
+            .anyMatch(animal -> Type.DOG.equals(animal.type()) && animal.height() > k);
     }
 
     public static int task15(List<Animal> animals, int k, int l) {
@@ -126,7 +126,7 @@ public class AnimalFunctions {
 
     public static boolean task17(List<Animal> animals) {
         double percentageOfDogs = animals.stream()
-            .filter(animal -> animal.type().equals(Animal.Type.DOG))
+            .filter(animal -> Type.DOG.equals(animal.type()))
             .collect(Collectors.collectingAndThen(
                 Collectors.partitioningBy(Animal::bites),
                 map -> {
@@ -139,7 +139,7 @@ public class AnimalFunctions {
                 }
             ));
         double percentageOfSpider = animals.stream()
-            .filter(animal -> animal.type().equals(Animal.Type.SPIDER))
+            .filter(animal -> Type.SPIDER.equals(animal.type()))
             .collect(Collectors.collectingAndThen(
                 Collectors.partitioningBy(Animal::bites),
                 map -> {
@@ -156,7 +156,7 @@ public class AnimalFunctions {
 
     public static Animal task18(List<Animal> animals1, List<Animal> animals2) {
         return Stream.concat(animals1.stream(), animals2.stream())
-            .filter(animal -> animal.type().equals(Animal.Type.FISH))
+            .filter(animal -> Type.FISH.equals(animal.type()))
             .max(Comparator.comparing(Animal::weight)).orElse(null);
     }
 

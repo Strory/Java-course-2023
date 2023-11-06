@@ -15,32 +15,32 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AnimalsTest {
     public List<Animal> animals = new ArrayList<>(List.of(
-        new Animal("Fedor", Animal.Type.DOG, Animal.Sex.F, 4, 20, 30, true),
-        new Animal("Fluffy", Animal.Type.FISH, Animal.Sex.F, 1, 5, 1, false),
-        new Animal("Bella Blue Whale", Animal.Type.CAT, Animal.Sex.F, 2, 10, 15, true),
-        new Animal("Charlie", Animal.Type.SPIDER, Animal.Sex.M, 3, 6, 2, false),
-        new Animal("Luna", Animal.Type.BIRD, Animal.Sex.F, 5, 16, 3, false),
-        new Animal("Oliver Owl", Animal.Type.CAT, Animal.Sex.M, 9, 21, 25, true),
-        new Animal("Daisy", Animal.Type.FISH, Animal.Sex.F, 5, 7, 2, false),
-        new Animal("Rocky", Animal.Type.DOG, Animal.Sex.M, 8, 22, 35, true),
-        new Animal("Lucy", Animal.Type.BIRD, Animal.Sex.F, 3, 10, 12, false),
-        new Animal("Sophie", Animal.Type.CAT, Animal.Sex.F, 6, 17, 23, false),
-        new Animal("Lola", Animal.Type.SPIDER, Animal.Sex.F, 23, 32, 23, true),
-        new Animal("Rocky Mountain Lion", Animal.Type.FISH, Animal.Sex.M, 12, 8, 5, true)
+        new Animal("Fedor", Type.DOG, Sex.F, 4, 20, 30, true),
+        new Animal("Fluffy", Type.FISH, Sex.F, 1, 5, 1, false),
+        new Animal("Bella Blue Whale", Type.CAT, Sex.F, 2, 10, 15, true),
+        new Animal("Charlie", Type.SPIDER, Sex.M, 3, 6, 2, false),
+        new Animal("Luna", Type.BIRD, Sex.F, 5, 16, 3, false),
+        new Animal("Oliver Owl", Type.CAT, Sex.M, 9, 21, 25, true),
+        new Animal("Daisy", Type.FISH, Sex.F, 5, 7, 2, false),
+        new Animal("Rocky", Type.DOG, Sex.M, 8, 22, 35, true),
+        new Animal("Lucy", Type.BIRD, Sex.F, 3, 10, 12, false),
+        new Animal("Sophie", Type.CAT, Sex.F, 6, 17, 23, false),
+        new Animal("Lola", Type.SPIDER, Sex.F, 23, 32, 23, true),
+        new Animal("Rocky Mountain Lion", Type.FISH, Sex.M, 12, 8, 5, true)
     ));
 
     public List<Animal> animals2 = new ArrayList<>(List.of(
-        new Animal("Louis", Animal.Type.DOG, Animal.Sex.F, 4, 20, 30, true),
-        new Animal("Coco", Animal.Type.FISH, Animal.Sex.F, 9, 43, 25, false),
-        new Animal("Madison", Animal.Type.CAT, Animal.Sex.M, 3, 200, 16, true),
-        new Animal("Bruno", Animal.Type.SPIDER, Animal.Sex.M, 3, 120, 2, false)
+        new Animal("Louis", Type.DOG, Sex.F, 4, 20, 30, true),
+        new Animal("Coco", Type.FISH, Sex.F, 9, 43, 25, false),
+        new Animal("Madison", Type.CAT, Sex.M, 3, 200, 16, true),
+        new Animal("Bruno", Type.SPIDER, Sex.M, 3, 120, 2, false)
     ));
 
     public List<Animal> animalsWithErrors = new ArrayList<>(List.of(
-        new Animal("Fedor", Animal.Type.DOG, Animal.Sex.F, -4, 20, 30, true),
-        new Animal("Fluffy", Animal.Type.FISH, Animal.Sex.F, 1, -5, -1, false),
-        new Animal("Bella Blue Whale", Animal.Type.CAT, Animal.Sex.F, 2, 0, 15, true),
-        new Animal("Charlie", Animal.Type.SPIDER, Animal.Sex.M, 3, 6, 2, false)
+        new Animal("Fedor", Type.DOG, Sex.F, -4, 20, 30, true),
+        new Animal("Fluffy", Type.FISH, Sex.F, 1, -5, -1, false),
+        new Animal("Bella Blue Whale", Type.CAT, Sex.F, 2, 0, 15, true),
+        new Animal("Charlie", Type.SPIDER, Sex.M, 3, 6, 2, false)
     ));
 
     @Test
@@ -77,15 +77,15 @@ public class AnimalsTest {
     @DisplayName("Проверка задания 3")
     void checkTask3() {
         //given
-        Map<Animal.Type, Long> expectAnswer = new HashMap<>();
-        expectAnswer.put(Animal.Type.BIRD, 2L);
-        expectAnswer.put(Animal.Type.DOG, 2L);
-        expectAnswer.put(Animal.Type.SPIDER, 2L);
-        expectAnswer.put(Animal.Type.CAT, 3L);
-        expectAnswer.put(Animal.Type.FISH, 3L);
+        Map<Type, Long> expectAnswer = new HashMap<>();
+        expectAnswer.put(Type.BIRD, 2L);
+        expectAnswer.put(Type.DOG, 2L);
+        expectAnswer.put(Type.SPIDER, 2L);
+        expectAnswer.put(Type.CAT, 3L);
+        expectAnswer.put(Type.FISH, 3L);
 
         //when
-        Map<Animal.Type, Long> realAnswer = AnimalFunctions.task3(animals);
+        Map<Type, Long> realAnswer = AnimalFunctions.task3(animals);
 
         //then
         for (Map.Entry animal : realAnswer.entrySet()) {
@@ -110,10 +110,10 @@ public class AnimalsTest {
     @DisplayName("Проверка задания 5")
     void checkTask5() {
         //given
-        Animal.Sex expectAnswer = Animal.Sex.F;
+        Sex expectAnswer = Sex.F;
 
         //when
-        Animal.Sex realAnswer = AnimalFunctions.task5(animals);
+        Sex realAnswer = AnimalFunctions.task5(animals);
 
         //then
         assertThat(realAnswer).isEqualTo(expectAnswer);
@@ -123,15 +123,15 @@ public class AnimalsTest {
     @DisplayName("Проверка задания 6")
     void checkTask6() {
         //given
-        Map<Animal.Type, String> expectAnswer = new HashMap<>();
-        expectAnswer.put(Animal.Type.FISH, "Rocky Mountain Lion");
-        expectAnswer.put(Animal.Type.BIRD, "Lucy");
-        expectAnswer.put(Animal.Type.DOG, "Rocky");
-        expectAnswer.put(Animal.Type.SPIDER, "Lola");
-        expectAnswer.put(Animal.Type.CAT, "Oliver Owl");
+        Map<Type, String> expectAnswer = new HashMap<>();
+        expectAnswer.put(Type.FISH, "Rocky Mountain Lion");
+        expectAnswer.put(Type.BIRD, "Lucy");
+        expectAnswer.put(Type.DOG, "Rocky");
+        expectAnswer.put(Type.SPIDER, "Lola");
+        expectAnswer.put(Type.CAT, "Oliver Owl");
 
         //when
-        Map<Animal.Type, Animal> realAnswer = AnimalFunctions.task6(animals);
+        Map<Type, Animal> realAnswer = AnimalFunctions.task6(animals);
 
         //then
         for (Map.Entry animal : realAnswer.entrySet()) {
