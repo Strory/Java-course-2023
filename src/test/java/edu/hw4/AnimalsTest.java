@@ -77,15 +77,15 @@ public class AnimalsTest {
     @DisplayName("Проверка задания 3")
     void checkTask3() {
         //given
-        Map<Type, Long> expectAnswer = new HashMap<>();
-        expectAnswer.put(Type.BIRD, 2L);
-        expectAnswer.put(Type.DOG, 2L);
-        expectAnswer.put(Type.SPIDER, 2L);
-        expectAnswer.put(Type.CAT, 3L);
-        expectAnswer.put(Type.FISH, 3L);
+        Map<Type, Integer> expectAnswer = new HashMap<>();
+        expectAnswer.put(Type.BIRD, 2);
+        expectAnswer.put(Type.DOG, 2);
+        expectAnswer.put(Type.SPIDER, 2);
+        expectAnswer.put(Type.CAT, 3);
+        expectAnswer.put(Type.FISH, 3);
 
         //when
-        Map<Type, Long> realAnswer = AnimalFunctions.task3(animals);
+        Map<Type, Integer> realAnswer = AnimalFunctions.task3(animals);
 
         //then
         for (Map.Entry animal : realAnswer.entrySet()) {

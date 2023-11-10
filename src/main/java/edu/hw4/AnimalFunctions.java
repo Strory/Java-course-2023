@@ -29,11 +29,11 @@ public class AnimalFunctions {
             .toList();
     }
 
-    public static HashMap<Type, Long> task3(List<Animal> animals) {
-        return (HashMap<Type, Long>) animals.stream()
+    public static HashMap<Type, Integer> task3(List<Animal> animals) {
+        return (HashMap<Type, Integer>) animals.stream()
             .collect(Collectors.groupingBy(
                 Animal::type,
-                Collectors.counting()
+                Collectors.summingInt(e -> 1)
             ));
     }
 
