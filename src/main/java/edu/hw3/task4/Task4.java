@@ -12,10 +12,10 @@ public class Task4 {
 
     @SuppressWarnings({"ParameterAssignment"})
     public String numbToRoman(int numb) {
-        final int THREE_THOUSAND_NINE_HUNDRED_NINETY_NINE = 3999;
+        final int MAX_ROME_NUMBER = 3999;
         final int TEN = 10;
         StringBuilder romanNumber = new StringBuilder();
-        if (numb > THREE_THOUSAND_NINE_HUNDRED_NINETY_NINE || numb < 0) {
+        if (numb > MAX_ROME_NUMBER || numb < 0) {
             return null;
         }
 
