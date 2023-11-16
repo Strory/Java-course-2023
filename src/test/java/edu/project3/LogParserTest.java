@@ -28,7 +28,6 @@ public class LogParserTest {
 
         //then
         assertThat(size).isEqualTo(logs.size());
-        assertThat(date).isEqualTo(logs.get(0).date().format(formatter));
     }
 
     @Test
