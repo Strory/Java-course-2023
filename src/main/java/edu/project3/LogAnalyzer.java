@@ -55,7 +55,7 @@ public class LogAnalyzer {
 
     public long getAverageSize() {
         long sum = 0;
-        for(LogRecord log : logList) {
+        for (LogRecord log : logList) {
             sum += log.size();
         }
         return sum / logList.size();

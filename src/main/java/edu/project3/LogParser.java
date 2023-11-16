@@ -20,11 +20,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LogParser {
-    private final String URL;
+    private final String url;
     private List<LogRecord> logList;
 
     LogParser(String url) {
-        this.URL = url;
+        this.url = url;
         createLogList();
     }
 
@@ -52,7 +52,7 @@ public class LogParser {
     }
 
     private void createLogList() {
-        String[] logStrings = (URL.matches("https?://.*")) ? getStrings() : getStringsFromFile();
+        String[] logStrings = (url.matches("https?://.*")) ? getStrings() : getStringsFromFile();
         logList = getLogList(logStrings);
         quickSort(logList, 0, logList.size() - 1);
     }
@@ -98,7 +98,7 @@ public class LogParser {
                 r = middle;
             }
         }
-        if (logs.get(l).date().isEqual(date)){
+        if (logs.get(l).date().isEqual(date)) {
             return l;
         }
         return r;
@@ -119,19 +119,19 @@ public class LogParser {
                 l = middle;
             }
         }
-        if (logs.get(r).date().isEqual(date)){
+        if (logs.get(r).date().isEqual(date)) {
             return r;
         }
         return l;
     }
 
     private String[] getStrings() {
-        int codeSuccessful = 200;
+        final int codeSuccessful = 200;
         HttpClient httpClient = HttpClient.newHttpClient();
 
         try {
             HttpRequest httpRequest = HttpRequest.newBuilder()
-                .uri(new URI(URL))
+                .uri(new URI(url))
                 .GET()
                 .build();
             var response = httpClient
@@ -147,7 +147,7 @@ public class LogParser {
     }
 
     private String[] getStringsFromFile() {
-        String fileName = URL;
+        String fileName = url;
         Path path = Paths.get(fileName);
 
         try {
@@ -158,6 +158,7 @@ public class LogParser {
         }
     }
 
+    @SuppressWarnings("MagicNumber")
     private List<LogRecord> getLogList(String[] loggString) {
         String regex = "(.*) - - \\[(.*)] \"(.*) (.*) (.*)\" (.*) (.*) \"-\" \"(.*)\"";
         Pattern pattern = Pattern.compile(regex);

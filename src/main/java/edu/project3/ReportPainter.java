@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ReportPainter {
+    @SuppressWarnings("MagicNumber")
     private Map<Integer, String> responseCodes = new HashMap<>(Map.of(
         200, "OK",
         206, "Partial Content",
@@ -19,7 +20,7 @@ public class ReportPainter {
         416, "Range Not Satisfiable",
         500, "Internal Server Error"
     ));
-    private final String URL;
+    private final String url;
     private final OffsetDateTime startDate;
     private final OffsetDateTime finalDate;
     private final int requestCount;
@@ -30,10 +31,11 @@ public class ReportPainter {
     private final String mostCommonAddress;
     private final FileType type;
 
-    ReportPainter(String URL, OffsetDateTime startDate, OffsetDateTime finalDate, int requestCount, long averageSize,
+    @SuppressWarnings("ParameterNumber")
+    ReportPainter(String url, OffsetDateTime startDate, OffsetDateTime finalDate, int requestCount, long averageSize,
         Map<String, Integer> resources, Map<Integer, Integer> codes, Map<Integer, Integer> mostVisitedHour,
         String mostCommonAddress, FileType type) {
-        this.URL = URL;
+        this.url = url;
         this.startDate = startDate;
         this.finalDate = finalDate;
         this.requestCount = requestCount;
@@ -45,6 +47,7 @@ public class ReportPainter {
         this.type = type;
     }
 
+    @SuppressWarnings({"MagicNumber", "MultipleStringLiterals"})
     public void fileWriter() {
         String divider = "|:" + "-".repeat(21) + ":|" + "-".repeat(16) + ":|";
         String dividerCode = "|:" + "-".repeat(3) + ":|:" + "-".repeat(21)
@@ -52,7 +55,7 @@ public class ReportPainter {
         String format = "| %-21s | %-15s |%n";
         String formatCode = "| %-3s | %-21s | %,-10d |%n";
         String formatCodeHead = "| %-3s | %-21s | %-10s |%n";
-        String url = getUrlString(URL);
+        String urlStr = getUrlString(this.url);
         String fileType = switch (type) {
             case FileType.MD -> "md";
             case FileType.ADOC -> "adoc";
@@ -63,7 +66,7 @@ public class ReportPainter {
             writer.println("#### Общая информация\n");
             writer.printf(format, "Метрика", "Значение");
             writer.println(divider);
-            writer.printf(format, "Файл/ссылка", url);
+            writer.printf(format, "Файл/ссылка", urlStr);
             writer.printf(format, "Начальная дата", getDate(startDate));
             writer.printf(format, "Конечная дата", finaleDate);
             writer.printf(format, "Количество запросов", requestCount);
@@ -109,6 +112,7 @@ public class ReportPainter {
         }
     }
 
+    @SuppressWarnings("MagicNumber")
     private String getHourString(int hour) {
         String hourString;
         if (hour != 23) {
@@ -125,7 +129,7 @@ public class ReportPainter {
         String regex = "https://(.{15}).*";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(url);
-        if (matcher.find()){
+        if (matcher.find()) {
             return matcher.group(1);
         } else {
             regex = ".*/(.*\\..*)";

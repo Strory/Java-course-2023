@@ -4,6 +4,8 @@ import java.time.OffsetDateTime;
 import java.util.List;
 
 public class Console {
+    private Console() {}
+
     public static void inputConsole(String url, String from, String to, FileType type) {
         OffsetDateTime date1 = OffsetDateTime.parse(from);
         OffsetDateTime date2 = OffsetDateTime.parse(to);
