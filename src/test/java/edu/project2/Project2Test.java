@@ -40,8 +40,9 @@ public class Project2Test {
         EllersMaze maze = new EllersMaze(10, 15);
         Cell[][] gridMaze = maze.generate();
 
-        // when
         Pathfinder pathfinder = new Pathfinder(gridMaze, start, end);
+
+        // when
         List<Coordinate> coordinates = pathfinder.getCoordinateList();
         Coordinate realEndCoordinate = coordinates.get(coordinates.size() - 1);
 
@@ -59,8 +60,9 @@ public class Project2Test {
         BacktrackingMaze maze = new BacktrackingMaze(10, 10);
         Cell[][] gridMaze = maze.generate();
 
-        // when
         PathfinderBSF pathfinder = new PathfinderBSF(gridMaze, start, end);
+
+        // when
         List<Coordinate> coordinates = pathfinder.getCoordinateList();
         Coordinate realStartCoordinate = coordinates.get(coordinates.size() - 1);
         Coordinate realEndCoordinate = coordinates.get(0);
