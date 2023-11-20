@@ -7,13 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Task2 {
+    public static final int DAY_OF_MONTH = 13;
+
     private Task2() {
     }
 
     public static List<LocalDate> getFridays(int year) {
         final int FIRST_MONTH = 1;
         final int MAX_MONTH_PLUS_1 = 13;
-        final int DAY_OF_MONTH = 13;
         final DayOfWeek day = DayOfWeek.FRIDAY;
         List<LocalDate> dates = new ArrayList<>();
 
@@ -28,7 +29,6 @@ public class Task2 {
 
     @SuppressWarnings("ParameterAssignment")
     public static LocalDate getNextFridayThirteen(LocalDate date) {
-        final int DAY_OF_MONTH = 13;
         if (!(date.getDayOfMonth() < DAY_OF_MONTH)) {
             date = date.plusMonths(1);
         }

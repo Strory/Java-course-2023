@@ -24,10 +24,10 @@ public class Task1 {
         return (int) Duration.between(start, end).toMinutes();
     }
 
+    @SuppressWarnings("MagicNumber")
     public static String timeToString(int time) {
-        final int SIXTY = 60;
-        int hour = time / SIXTY;
-        int minutes = time % SIXTY;
-        return hour + "ч " + minutes + "м";
+        int hour = time / 60;
+        int minutes = time % 60;
+        return "%sч %sм".formatted(hour, minutes);
     }
 }
