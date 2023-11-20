@@ -2,6 +2,7 @@ package edu.project2;
 
 import edu.project2.pathfinding.Coordinate;
 import edu.project2.pathfinding.Pathfinder;
+import edu.project2.pathfinding.PathfinderBSF;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,8 +32,8 @@ public class Project2Test {
     }
 
     @Test
-    @DisplayName("Проверка поиска пути")
-    void checkFindPath() {
+    @DisplayName("Проверка поиска пути в глубину")
+    void checkFindPathDepth() {
         // given
         Coordinate start = new Coordinate(0, 0);
         Coordinate end = new Coordinate(9, 0);
@@ -47,5 +48,27 @@ public class Project2Test {
         // then
         assertThat(end.row()).isEqualTo(realEndCoordinate.row());
         assertThat(end.col()).isEqualTo(realEndCoordinate.col());
+    }
+
+    @Test
+    @DisplayName("Проверка поиска пути в ширину")
+    void checkFindPathBreadth() {
+        // given
+        Coordinate start = new Coordinate(0, 0);
+        Coordinate end = new Coordinate(9, 9);
+        BacktrackingMaze maze = new BacktrackingMaze(10, 10);
+        Cell[][] gridMaze = maze.generate();
+
+        // when
+        PathfinderBSF pathfinder = new PathfinderBSF(gridMaze, start, end);
+        List<Coordinate> coordinates = pathfinder.getCoordinateList();
+        Coordinate realStartCoordinate = coordinates.get(coordinates.size() - 1);
+        Coordinate realEndCoordinate = coordinates.get(0);
+
+        // then
+        assertThat(end.row()).isEqualTo(realEndCoordinate.row());
+        assertThat(end.col()).isEqualTo(realEndCoordinate.col());
+        assertThat(start.row()).isEqualTo(realStartCoordinate.row());
+        assertThat(start.col()).isEqualTo(realStartCoordinate.col());
     }
 }

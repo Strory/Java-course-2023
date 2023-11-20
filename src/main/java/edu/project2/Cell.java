@@ -11,6 +11,12 @@ public class Cell {
         setId = -1;
     }
 
+    Cell(boolean wallRight, boolean wallDown) {
+        this.wallRight = wallRight;
+        this.wallDown = wallDown;
+        setId = -1;
+    }
+
     public int getId() {
         return setId;
     }
