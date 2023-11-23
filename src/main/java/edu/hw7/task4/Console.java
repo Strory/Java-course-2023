@@ -75,7 +75,7 @@ public class Console {
         }
         averageError2 /= errors.size();
         logger.info(String.valueOf(averageError2));
-        .
+
         logger.info(String.valueOf(averageAccelerationTime1));
         logger.info(String.valueOf(averageAccelerationTime2));
         logger.info(String.valueOf(averageAccelerationTime3));
