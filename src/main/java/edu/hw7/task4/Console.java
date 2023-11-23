@@ -68,9 +68,14 @@ public class Console {
         averageAccelerationTime3 = (justTotalTime / 10) / (threadsTotalTime3 / 10);
         averageAccelerationTime4 = (justTotalTime / 10) / (threadsTotalTime4 / 10);
 
-        double averageError = errors.stream().reduce(1d, Double::sum) / errors.size();
-        logger.info(String.valueOf(averageError));
-
+        double averageError = errors.stream().reduce(1d, Double::sum) / errors.size(); // работает неправильно
+        double averageError2 = 0;
+        for (double err : errors) {
+            averageError2 += err;
+        }
+        averageError2 /= errors.size();
+        logger.info(String.valueOf(averageError2));
+        .
         logger.info(String.valueOf(averageAccelerationTime1));
         logger.info(String.valueOf(averageAccelerationTime2));
         logger.info(String.valueOf(averageAccelerationTime3));
