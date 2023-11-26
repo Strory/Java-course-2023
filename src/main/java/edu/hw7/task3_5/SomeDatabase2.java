@@ -19,30 +19,36 @@ public class SomeDatabase2 implements PersonDatabase {
     @Override
     public void add(Person person) {
         lock.writeLock().lock();
-        if (data.containsKey(person.id())) {
-            return;
+        try {
+            if (data.containsKey(person.id())) {
+                return;
+            }
+            data.put(person.id(), person);
+            if (checkFullPerson(person)) {
+                fullPersons.add(person.id());
+            }
+        } finally {
+            lock.writeLock().unlock();
         }
-        data.put(person.id(), person);
-        if (checkFullPerson(person)) {
-            fullPersons.add(person.id());
-        }
-        lock.writeLock().unlock();
     }
 
     public void change(Person person) {
         lock.writeLock().lock();
-        if (data.containsKey(person.id())) {
-            data.put(person.id(), person);
-        } else {
-            return;
+        try {
+            if (data.containsKey(person.id())) {
+                data.put(person.id(), person);
+            } else {
+                return;
+            }
+            if (checkFullPerson(person)) {
+                fullPersons.add(person.id());
+            }
+            if (person.name() == null || person.address() == null || person.phoneNumber() == null) {
+                fullPersons.remove(person.id());
+            }
+        } finally {
+            lock.writeLock().unlock();
         }
-        if (checkFullPerson(person)) {
-            fullPersons.add(person.id());
-        }
-        if (person.name() == null || person.address() == null || person.phoneNumber() == null) {
-            fullPersons.remove(person.id());
-        }
-        lock.writeLock().unlock();
     }
 
     private boolean checkFullPerson(Person person) {
@@ -52,21 +58,27 @@ public class SomeDatabase2 implements PersonDatabase {
     @Override
     public void delete(int id) {
         lock.writeLock().lock();
-        data.remove(id);
-        fullPersons.remove(id);
-        lock.writeLock().unlock();
+        try {
+            data.remove(id);
+            fullPersons.remove(id);
+        } finally {
+            lock.writeLock().unlock();
+        }
     }
 
     @Override
     public List<Person> findByName(String name) {
         List<Person> persons = new ArrayList<>();
         lock.readLock().lock();
-        for (int id : fullPersons) {
-            if (name.equals(data.get(id).name())) {
-                persons.add(data.get(id));
+        try {
+            for (int id : fullPersons) {
+                if (name.equals(data.get(id).name())) {
+                    persons.add(data.get(id));
+                }
             }
+        } finally {
+            lock.readLock().unlock();
         }
-        lock.readLock().unlock();
         return persons;
     }
 
@@ -74,12 +86,15 @@ public class SomeDatabase2 implements PersonDatabase {
     public List<Person> findByAddress(String address) {
         List<Person> persons = new ArrayList<>();
         lock.readLock().lock();
-        for (int id : fullPersons) {
-            if (address.equals(data.get(id).address())) {
-                persons.add(data.get(id));
+        try {
+            for (int id : fullPersons) {
+                if (address.equals(data.get(id).address())) {
+                    persons.add(data.get(id));
+                }
             }
+        } finally {
+            lock.readLock().unlock();
         }
-        lock.readLock().unlock();
         return persons;
     }
 
@@ -87,12 +102,15 @@ public class SomeDatabase2 implements PersonDatabase {
     public List<Person> findByPhone(String phone) {
         List<Person> persons = new ArrayList<>();
         lock.readLock().lock();
-        for (int id : fullPersons) {
-            if (phone.equals(data.get(id).phoneNumber())) {
-                persons.add(data.get(id));
+        try {
+            for (int id : fullPersons) {
+                if (phone.equals(data.get(id).phoneNumber())) {
+                    persons.add(data.get(id));
+                }
             }
+        } finally {
+            lock.readLock().unlock();
         }
-        lock.readLock().unlock();
         return persons;
     }
 }
