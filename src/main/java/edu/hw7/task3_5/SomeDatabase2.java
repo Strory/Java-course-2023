@@ -18,7 +18,7 @@ public class SomeDatabase2 implements PersonDatabase {
 
     @Override
     public void add(Person person) {
-        lock.writeLock();
+        lock.writeLock().lock();
         if (data.containsKey(person.id())) {
             return;
         }
@@ -26,10 +26,11 @@ public class SomeDatabase2 implements PersonDatabase {
         if (checkFullPerson(person)) {
             fullPersons.add(person.id());
         }
+        lock.writeLock().unlock();
     }
 
     public void change(Person person) {
-        lock.writeLock();
+        lock.writeLock().lock();
         if (data.containsKey(person.id())) {
             data.put(person.id(), person);
         } else {
@@ -41,6 +42,7 @@ public class SomeDatabase2 implements PersonDatabase {
         if (person.name() == null || person.address() == null || person.phoneNumber() == null) {
             fullPersons.remove(person.id());
         }
+        lock.writeLock().unlock();
     }
 
     private boolean checkFullPerson(Person person) {
@@ -49,41 +51,48 @@ public class SomeDatabase2 implements PersonDatabase {
 
     @Override
     public void delete(int id) {
-        lock.writeLock();
+        lock.writeLock().lock();
         data.remove(id);
         fullPersons.remove(id);
+        lock.writeLock().unlock();
     }
 
     @Override
     public List<Person> findByName(String name) {
         List<Person> persons = new ArrayList<>();
+        lock.readLock().lock();
         for (int id : fullPersons) {
             if (name.equals(data.get(id).name())) {
                 persons.add(data.get(id));
             }
         }
+        lock.readLock().unlock();
         return persons;
     }
 
     @Override
     public List<Person> findByAddress(String address) {
         List<Person> persons = new ArrayList<>();
+        lock.readLock().lock();
         for (int id : fullPersons) {
             if (address.equals(data.get(id).address())) {
                 persons.add(data.get(id));
             }
         }
+        lock.readLock().unlock();
         return persons;
     }
 
     @Override
     public List<Person> findByPhone(String phone) {
         List<Person> persons = new ArrayList<>();
+        lock.readLock().lock();
         for (int id : fullPersons) {
             if (phone.equals(data.get(id).phoneNumber())) {
                 persons.add(data.get(id));
             }
         }
+        lock.readLock().unlock();
         return persons;
     }
 }
