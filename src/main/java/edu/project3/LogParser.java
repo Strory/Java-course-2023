@@ -16,10 +16,12 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LogParser {
+    private Logger logger = Logger.getLogger("LogParser");
     private final String url;
     private List<LogRecord> logList;
 
@@ -154,11 +156,11 @@ public class LogParser {
             String data = Files.readString(path, StandardCharsets.UTF_8);
             return data.split("\n");
         } catch (IOException e) {
+            logger.info(e.getMessage());
             return null;
         }
     }
 
-    @SuppressWarnings("MagicNumber")
     private List<LogRecord> getLogList(String[] loggString) {
         String regex = "(.*) - - \\[(.*)] \"(.*) (.*) (.*)\" (.*) (.*) \"-\" \"(.*)\"";
         Pattern pattern = Pattern.compile(regex);
@@ -166,13 +168,18 @@ public class LogParser {
         logList = new ArrayList<>();
         for (String strLog : loggString) {
             Matcher matcher = pattern.matcher(strLog);
-            if (matcher.find()) {
-                logList.add(new LogRecord(matcher.group(1), getDate(matcher.group(2)),
-                    matcher.group(3), matcher.group(4), matcher.group(5),
-                    Integer.parseInt(matcher.group(6)), Long.parseLong(matcher.group(7)), matcher.group(8)));
-            }
+            addToList(matcher);
         }
         return logList;
+    }
+
+    @SuppressWarnings("MagicNumber")
+    private void addToList(Matcher matcher) {
+        if (matcher.find()) {
+            logList.add(new LogRecord(matcher.group(1), getDate(matcher.group(2)),
+                matcher.group(3), matcher.group(4), matcher.group(5),
+                Integer.parseInt(matcher.group(6)), Long.parseLong(matcher.group(7)), matcher.group(8)));
+        }
     }
 
     private OffsetDateTime getDate(String strData) {
