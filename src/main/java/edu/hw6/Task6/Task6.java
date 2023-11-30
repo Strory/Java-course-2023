@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 public class Task6 {
     private Task6() {}
 
-    static Logger logger = Logger.getLogger("portLogger");
+    private static final Logger logger = Logger.getLogger("portLogger");
 
     @SuppressWarnings({"MagicNumber", "MultipleStringLiterals"})
     public static void scanServerSocket() {

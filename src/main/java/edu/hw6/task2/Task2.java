@@ -26,20 +26,20 @@ public class Task2 {
         String nameWithNoType = splitName[0];
         String type = splitName[1];
         if (nameWithNoType.matches(".* - копия$")) {
-            return nameWithNoType + " (2)." + type;
+            return "%s (2).%s".formatted(nameWithNoType, type);
         } else if (nameWithNoType.matches(".* - копия \\([0-9]*\\)$")) {
             Pattern pattern = Pattern.compile(".* - копия \\(([0-9]*)\\)$");
             Matcher matcher = pattern.matcher(nameWithNoType);
             if (matcher.find()) {
                 int copyOrder = Integer.parseInt(matcher.group(1));
                 String copyStr = " - копия (";
-                String oldEnd = copyStr + (copyOrder) + ")";
-                String newEnd = copyStr + (copyOrder + 1) + ")";
+                String oldEnd = "%s%s)".formatted(copyStr, copyOrder);
+                String newEnd = "%s%s".formatted(copyStr, copyOrder + 1);
                 String newString = nameWithNoType.replace(oldEnd, newEnd);
-                return newString + "." + type;
+                return "%s.%s".formatted(newString, type);
             }
         } else {
-            return nameWithNoType + " - копия." + type;
+            return "%s - копия.%s".formatted(nameWithNoType, type);
         }
         return null;
     }
