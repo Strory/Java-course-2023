@@ -1,6 +1,11 @@
 package edu.hw8.task1;
 
+import java.util.logging.Logger;
+
 public class Check {
+
+    private static Logger logger = Logger.getLogger("Check");
+
     private Check() {}
 
     public static void runCheck() {
@@ -20,7 +25,7 @@ public class Check {
             thread2.join();
             thread3.join();
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            logger.severe(e.getMessage());
         }
     }
 }

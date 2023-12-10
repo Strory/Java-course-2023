@@ -10,7 +10,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Logger;
 
 public class Client {
-    Logger logger = Logger.getLogger("client");
+
+    private Logger logger = Logger.getLogger("client");
     private static final String SERVER_ADDRESS = "127.0.0.1";
     private static final int SERVER_PORT = 8080;
 
@@ -37,7 +38,7 @@ public class Client {
             String serverResponse = reader.readLine();
             logger.info(serverResponse);
         } catch (IOException e) {
-            logger.info(e.getMessage());
+            logger.severe(e.getMessage());
         }
     }
 }

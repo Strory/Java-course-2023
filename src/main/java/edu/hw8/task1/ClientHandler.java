@@ -9,7 +9,8 @@ import java.net.Socket;
 import java.util.logging.Logger;
 
 public class ClientHandler implements Runnable {
-    Logger logger = Logger.getLogger("ClientHandler");
+
+    private Logger logger = Logger.getLogger("ClientHandler");
     private Socket socket;
 
     private ClientHandler() {}
@@ -32,7 +33,7 @@ public class ClientHandler implements Runnable {
             }
             socket.close();
         } catch (IOException e) {
-            logger.info(e.getMessage());
+            logger.severe(e.getMessage());
         }
     }
 }

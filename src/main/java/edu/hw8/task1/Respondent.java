@@ -1,7 +1,9 @@
 package edu.hw8.task1;
 
 public class Respondent {
-    private Respondent() {}
+
+    private Respondent() {
+    }
 
     public static String getPhrase(String word) {
         return switch (word) {

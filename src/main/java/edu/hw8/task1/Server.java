@@ -8,7 +8,8 @@ import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
 public class Server {
-    Logger logger = Logger.getLogger("Server");
+
+    private Logger logger = Logger.getLogger("Server");
     private static final int PORT = 8080;
     private static final int MAX_CONNECTIONS = 2;
 
@@ -24,7 +25,7 @@ public class Server {
             }
 
         } catch (IOException e) {
-            logger.info(e.getMessage());
+            logger.severe(e.getMessage());
         } finally {
             executorService.shutdown();
         }
