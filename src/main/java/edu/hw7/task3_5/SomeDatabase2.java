@@ -12,6 +12,7 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class SomeDatabase2 implements PersonDatabase {
+
     private ReadWriteLock lock = new ReentrantReadWriteLock();
     private Map<Integer, Person> data = new HashMap<>();
     private Set<Integer> fullPersons = new HashSet<>();

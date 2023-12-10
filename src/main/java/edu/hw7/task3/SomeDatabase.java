@@ -8,8 +8,9 @@ import java.util.Map;
 import java.util.Set;
 
 public class SomeDatabase implements PersonDatabase {
-    private volatile Map<Integer, Person> data = new HashMap<>();
-    private volatile Set<Integer> fullPersons = new HashSet<>();
+
+    private Map<Integer, Person> data = new HashMap<>();
+    private Set<Integer> fullPersons = new HashSet<>();
 
     @Override
     public synchronized void add(Person person) {
@@ -47,7 +48,7 @@ public class SomeDatabase implements PersonDatabase {
     }
 
     @Override
-    public List<Person> findByName(String name) {
+    public synchronized List<Person> findByName(String name) {
         List<Person> persons = new ArrayList<>();
         for (int id : fullPersons) {
             if (name.equals(data.get(id).name())) {
@@ -58,7 +59,7 @@ public class SomeDatabase implements PersonDatabase {
     }
 
     @Override
-    public List<Person> findByAddress(String address) {
+    public synchronized List<Person> findByAddress(String address) {
         List<Person> persons = new ArrayList<>();
         for (int id : fullPersons) {
             if (address.equals(data.get(id).address())) {
@@ -69,7 +70,7 @@ public class SomeDatabase implements PersonDatabase {
     }
 
     @Override
-    public List<Person> findByPhone(String phone) {
+    public synchronized List<Person> findByPhone(String phone) {
         List<Person> persons = new ArrayList<>();
         for (int id : fullPersons) {
             if (phone.equals(data.get(id).phoneNumber())) {

@@ -2,7 +2,8 @@ package edu.hw7.task1;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-    public class Incrementer extends  Thread {
+public class Incrementer extends Thread {
+
     private AtomicInteger counter = Task1.counter;
 
     @Override
