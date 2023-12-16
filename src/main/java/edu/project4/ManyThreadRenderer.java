@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class ManyThreadRenderer implements Renderer {
+
     private Logger logger = Logger.getLogger("Renderer");
     private final double xMin = -1;
     private final double xMax = 1;
@@ -149,12 +150,13 @@ public class ManyThreadRenderer implements Renderer {
                             int pointY = (int) (y * height / 2 + height / 2);
 
                             if (pointX < width && pointY < height && pointX > 0 && pointY > 0) {
-                                synchronized (pixels[pointY][pointX]) {
                                     if (pixels[pointY][pointX].getHitCount() == 0) {
-                                        pixels[pointY][pointX] = new Pixel(affinFunctions[affinIndex].red(),
-                                            affinFunctions[affinIndex].green(),
-                                            affinFunctions[affinIndex].blue(), 1
-                                        );
+                                        synchronized (pixels[pointY][pointX]) {
+                                            pixels[pointY][pointX] = new Pixel(affinFunctions[affinIndex].red(),
+                                                affinFunctions[affinIndex].green(),
+                                                affinFunctions[affinIndex].blue(), 1
+                                            );
+                                        }
                                     } else {
                                         synchronized (pixels[pointY][pointX]) {
                                             pixels[pointY][pointX].hitCountIncrement();
@@ -171,7 +173,6 @@ public class ManyThreadRenderer implements Renderer {
                                             pixels[pointY][pointX].setBlue(blue);
                                         }
                                     }
-                                }
                             }
                         } else {
                             int pointX = (int) (x * width / 4 + width / 4);

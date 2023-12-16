@@ -4,6 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Logger;
 
 public class Console {
+
     public static Logger logger = Logger.getLogger("Console");
 
     private Console() {}
