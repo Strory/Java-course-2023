@@ -103,7 +103,7 @@ public class ManyThreadRenderer implements Renderer {
         frame.setVisible(true);
     }
 
-    @SuppressWarnings({"CyclomaticComplexity", "MagicNumber", "LambdaBodyLength"})
+    @SuppressWarnings({"CyclomaticComplexity", "MagicNumber", "LambdaBodyLength", "MethodLength", "NestedForDepth"})
     private void generatePixelsArray(int numCount, int iterCount, int width, int height, int symmetry) {
         AffinFunction[] affinFunctions = functionProvider.getAffinFunctions();
         this.pixels = new Pixel[height][width];
@@ -174,7 +174,7 @@ public class ManyThreadRenderer implements Renderer {
                                         }
                                     }
                             }
-                        } else {
+                        } else if (symmetry == 1) {
                             int pointX = (int) (x * width / 4 + width / 4);
                             int mirrorX = width - pointX - 1;
                             int pointY = (int) (y * height / 2 + height / 2);
@@ -211,6 +211,51 @@ public class ManyThreadRenderer implements Renderer {
                                         pixels[pointY][mirrorX].setRed(pixels[pointY][pointX].getRed());
                                         pixels[pointY][mirrorX].setGreen(pixels[pointY][pointX].getGreen());
                                         pixels[pointY][mirrorX].setBlue(pixels[pointY][pointX].getBlue());
+                                    }
+                                }
+                            }
+                        } else {
+                            // Поворот
+
+                            double[] xArr = new double[symmetry];
+                            double[] yArr = new double[symmetry];
+
+                            double angle = (2 * Math.PI) / symmetry;
+                            double currentAngle = 0;
+                            for (int o = 0; o < symmetry; ++o) {
+                                xArr[o] = x * Math.cos(currentAngle) - y * Math.sin(currentAngle);
+                                yArr[o] = x * Math.sin(currentAngle) + y * Math.cos(currentAngle);
+                                currentAngle += angle;
+                            }
+
+                            // Заносим в массив реальные точки
+                            for (int o = 0; o < xArr.length; ++o) {
+                                int pointX = (int) (xArr[o] * width / 2 + width / 2);
+                                int pointY = (int) (yArr[o] * height / 2 + height / 2);
+
+                                if (pointX < width && pointY < height && pointX > 0 && pointY > 0) {
+                                    if (pixels[pointY][pointX].getHitCount() == 0) {
+                                        synchronized (pixels[pointY][pointX]) {
+                                            pixels[pointY][pointX] = new Pixel(affinFunctions[affinIndex].red(),
+                                                affinFunctions[affinIndex].green(),
+                                                affinFunctions[affinIndex].blue(), 1
+                                            );
+                                        }
+                                    } else {
+                                        synchronized (pixels[pointY][pointX]) {
+                                            pixels[pointY][pointX].hitCountIncrement();
+                                            int red =
+                                                (pixels[pointY][pointX].getRed()
+                                                    + affinFunctions[affinIndex].red()) / 2;
+                                            int green = (pixels[pointY][pointX].getGreen()
+                                                + affinFunctions[affinIndex].green()) / 2;
+                                            int blue =
+                                                (pixels[pointY][pointX].getBlue()
+                                                    + affinFunctions[affinIndex].blue()) / 2;
+                                            pixels[pointY][pointX].setRed(red);
+                                            pixels[pointY][pointX].setGreen(green);
+                                            pixels[pointY][pointX].setBlue(blue);
+                                        }
                                     }
                                 }
                             }

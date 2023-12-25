@@ -13,9 +13,8 @@ public class Console {
     public static void generateImages() {
         for (int i = 0; i < 10; ++i) {
             int affinCount = ThreadLocalRandom.current().nextInt(1, 10);
-            int symmetry = ThreadLocalRandom.current().nextInt(2);
+            int symmetry = ThreadLocalRandom.current().nextInt(24);
             double gamma = ThreadLocalRandom.current().nextDouble(0.2, 2.3);
-
 
             FunctionProvider provider = new FunctionGenerator(affinCount);
             Renderer renderer = new ManyThreadRenderer(provider, 4);
