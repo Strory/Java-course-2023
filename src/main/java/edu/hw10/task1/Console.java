@@ -15,7 +15,7 @@ public class Console {
             Person person = rog.nextObject(Person.class);
             Coordinate coordinate = rog.nextObject(Coordinate.class);
 
-            logger.info("Возрас: " + person.getAge());
+            logger.info("Возраст: " + person.getAge());
             logger.info("Поле row: " + coordinate.row());
         } catch (Exception e) {
             logger.severe(e.getMessage());
